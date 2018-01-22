@@ -156,4 +156,33 @@ public class BinarySearchTree <T extends Comparable<? super T>> extends BinaryTr
 			rootNode = findLargest(rootNode.getRightChild());
 		return rootNode;
 	}
+
+	public int findPredecessor(int num) {
+		int count = 0;
+		String[] strArray = this.inorderTraverse().split("\\s+");
+		return privatePredecessor(num, strArray, count);
+	}
+
+	private int privatePredecessor(int num, String[] strArray, int count) {
+		int pred = num;
+		if (Integer.parseInt(strArray[count]) == num)
+			pred = Integer.parseInt(strArray[count - 1]);
+		else if (count < strArray.length - 1)
+			pred = privatePredecessor(num, strArray, count + 1);
+		return pred;
+	}
+
+	public int findSuccessor(int num) {
+		int count = 0;
+		String[] strArray = this.inorderTraverse().split("\\s+");
+		return privateSuccessor(num, strArray, count);
+	}
+	private int privateSuccessor(int num, String[] strArray, int count) {
+		int succ = num;
+		if (Integer.parseInt(strArray[count]) == num)
+			succ = Integer.parseInt(strArray[count + 1]);
+		else if (count < strArray.length - 1)
+			succ = privateSuccessor(num, strArray, count + 1);
+		return succ;
+	}
 }
