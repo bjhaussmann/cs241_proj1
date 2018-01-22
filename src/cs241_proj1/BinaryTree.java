@@ -106,7 +106,7 @@ public class BinaryTree <T> implements BinaryTreeInterface <T> {
 
 	private String inorderTraverse(BinaryNode<T> node)
 	{
-		String result = null;
+		String result = "";
 		if(node != null)
 		{
 			result += inorderTraverse(node.getLeftChild());
@@ -123,7 +123,7 @@ public class BinaryTree <T> implements BinaryTreeInterface <T> {
 
 	private String preorderTraverse(BinaryNode<T> node)
 	{
-		String result = null;
+		String result = "";
 		if(node != null)
 		{
 			result += node.getData() + " ";

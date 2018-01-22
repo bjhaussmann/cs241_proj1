@@ -21,7 +21,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		start();
-		System.out.println(tree.postorderTraverse());
+		System.out.println("Preorder: " + tree.preorderTraverse());
+		System.out.println("Inorder: " + tree.inorderTraverse());
+		System.out.println("Postorder: " + tree.postorderTraverse());
 		in.close();
 	}
 
