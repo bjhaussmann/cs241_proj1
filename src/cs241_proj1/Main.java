@@ -16,7 +16,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		BST tree = new BST();
+		BinaryTree tree = new BinaryTree();
 		
 		System.out.println("Please enter the initial sequence of values: ");
 		while (in.hasNext())
