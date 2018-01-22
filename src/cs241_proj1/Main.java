@@ -17,40 +17,34 @@ public class Main {
 	 */
 	static Scanner in = new Scanner(System.in);
 	static String str = null;
-	static String [] strArray;
-	static BinarySearchTree <Integer> tree = new BinarySearchTree<Integer>();
-	
+	static String[] strArray;
+	static BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+
 	public static void main(String[] args) {
 		start();
 		System.out.println("Preorder: " + tree.preorderTraverse());
 		System.out.println("Inorder: " + tree.inorderTraverse());
 		System.out.println("Postorder: " + tree.postorderTraverse());
 		String select = "";
-		
-		while (select != "E")
-		{
-			
+
+		while (select != "E") {
+
 			System.out.print("Command? ");
 			select = in.next();
 			select = select.toUpperCase();
 			int num = 0;
-			if (select.equals("I") || select.equals("D") || select.equals("P") || select.equals("S"))
-			{
-				try
-				{
+			if (select.equals("I") || select.equals("D") || select.equals("P") || select.equals("S")) {
+				try {
 					num = in.nextInt();
 					in.nextLine();
-				}
-				catch (InputMismatchException e)
-				{
+				} catch (InputMismatchException e) {
 					System.out.println("Command must be followed by an integer!");
 					in.nextLine();
 					select = "B";
 				}
 			}
-			switch(select)
-			{
-			//insert a value
+			switch (select) {
+			// insert a value
 			case "I":
 				if (tree.add(num) != null)
 					System.out.println(num + " already exists. Ignored.");
@@ -58,18 +52,15 @@ public class Main {
 					System.out.println("Inorder: " + tree.inorderTraverse());
 				break;
 			case "D":
-				if (tree.contains(num))
-				{
+				if (tree.contains(num)) {
 					tree.remove(num);
 					System.out.println("Inorder: " + tree.inorderTraverse());
-				}
-				else
+				} else
 					System.out.println(num + "doesn't exist.");
 				break;
 			case "P":
-				if (tree.contains(num))
-				{
-					int	pred = tree.findPredecessor(num);
+				if (tree.contains(num)) {
+					int pred = tree.findPredecessor(num);
 					if (num == pred)
 						System.out.println("First number in traversal. No predecessor!");
 					else
@@ -77,8 +68,7 @@ public class Main {
 				}
 				break;
 			case "S":
-				if (tree.contains(num))
-				{
+				if (tree.contains(num)) {
 					int succ = tree.findSuccessor(num);
 					if (num == succ)
 						System.out.println("Last number in traversal. No successor!");
@@ -108,21 +98,16 @@ public class Main {
 		in.close();
 	}
 
-	private static void start ()
-	{
+	private static void start() {
 		System.out.println("Please enter the initial sequence of values: ");
 		str = in.nextLine();
 		strArray = str.split("\\s+");
-		
-		try
-		{
-		for (int i = 0; i < strArray.length; i++)
-		{
-			tree.add(Integer.parseInt(strArray[i]));
-		}
-		}
-		catch (NumberFormatException e)
-		{
+
+		try {
+			for (int i = 0; i < strArray.length; i++) {
+				tree.add(Integer.parseInt(strArray[i]));
+			}
+		} catch (NumberFormatException e) {
 			System.out.println("Invalid character entered. Ensure all numbers are integers seperated by spaces.");
 			start();
 		}
