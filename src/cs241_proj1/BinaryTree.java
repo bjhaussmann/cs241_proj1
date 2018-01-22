@@ -4,8 +4,6 @@
 package cs241_proj1;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-import StackAndQueuePackage.*;
 
 /**
  * @author bjhau
@@ -62,7 +60,7 @@ public class BinaryTree <T> implements BinaryTreeInterface <T> {
 	@Override
 	public T getRootData() {
 		if (isEmpty())
-			throw new EmptyTreeException();
+			return null;
 		else
 			return root.getData();
 	}
@@ -102,28 +100,55 @@ public class BinaryTree <T> implements BinaryTreeInterface <T> {
 	{
 		return root;
 	}
-
-	@Override
-	public Iterator<T> getPreorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public void inorderTraverse()
+	{
+		inorderTraverse(root);
 	}
 
-	@Override
-	public Iterator<T> getPostorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+	private String inorderTraverse(BinaryNode<T> node)
+	{
+		String result = null;
+		if(node != null)
+		{
+			inorderTraverse(node.getLeftChild());
+			result += " " + node.getData();
+			inorderTraverse(node.getRightChild());
+		}
+		return result;
+	}
+	
+	public void preorderTraverse()
+	{
+		preorderTraverse(root);
 	}
 
-	@Override
-	public Iterator<T> getInorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+	private String preorderTraverse(BinaryNode<T> node)
+	{
+		String result = null;
+		if(node != null)
+		{
+			result += " " + node.getData();
+			preorderTraverse(node.getLeftChild());
+			preorderTraverse(node.getRightChild());
+		}
+		return result;
+	}
+	
+	public void postorderTraverse()
+	{
+		postorderTraverse(root);
 	}
 
-	@Override
-	public Iterator<T> getLevelorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+	private String postorderTraverse(BinaryNode<T> node)
+	{
+		String result = null;
+		if(node != null)
+		{
+			postorderTraverse(node.getLeftChild());
+			postorderTraverse(node.getRightChild());
+			result += " " + node.getData();
+		}
+		return result;
 	}
 }

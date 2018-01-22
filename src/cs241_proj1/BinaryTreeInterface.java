@@ -7,7 +7,7 @@ package cs241_proj1;
  * @author bjhau
  *
  */
-public interface BinaryTreeInterface<T> extends TreeInterface<T>, TreeIteratorInterface<T> {
+public interface BinaryTreeInterface<T> extends TreeInterface<T>{
 
 	/**
 	 * Sets this binary tree to a new one-node binary tree.
