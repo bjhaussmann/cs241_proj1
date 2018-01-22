@@ -17,6 +17,9 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		setRootNode(new BinaryNode<T>(rootEntry));
 	}
 
+	/**
+	 * add entry helper
+	 */
 	@Override
 	public T add(T newEntry) {
 		T result = null;
@@ -27,6 +30,12 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return result;
 	}
 
+	/**
+	 * Add an entry to the tree
+	 * @param rootNode	 root of the tree
+	 * @param newEntry	entry to be added
+	 * @return	returns the replaced value if the entry already existed, else null
+	 */
 	private T addEntry(BinaryNode<T> rootNode, T newEntry) {
 		assert rootNode != null;
 		T result = null;
@@ -50,11 +59,20 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return result;
 	}
 
+	/**
+	 * check to see if the tree contains a specified value
+	 */
 	@Override
 	public boolean contains(T entry) {
 		return getEntry(entry) != null;
 	}
 
+	/**
+	 * Finds an entry and returns it
+	 * @param rootNode	 root of the tree containing the entry
+	 * @param entry the entry to be found
+	 * @return the entry if it is found. else null
+	 */
 	private T findEntry(BinaryNode<T> rootNode, T entry) {
 		T result = null;
 		if (rootNode != null) {
@@ -75,23 +93,43 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return rootNode;
 	}
 
+	/**
+	 * Find the predecessor helper method
+	 * @param num	num looking for the predecessor for
+	 * @return the predecessor of the given value. returns the value if it is the first in the traversal
+	 */
 	public int findPredecessor(int num) {
 		int count = 0;
 		String[] strArray = this.inorderTraverse().split("\\s+");
 		return privatePredecessor(num, strArray, count);
 	}
 
+	/** 
+	 * Find successor helper method
+	 * @param num	num looking for the successor for
+	 * @return	the successor of the given value. returns the given value if it is the last in the traversal
+	 */
 	public int findSuccessor(int num) {
 		int count = 0;
 		String[] strArray = this.inorderTraverse().split("\\s+");
 		return privateSuccessor(num, strArray, count);
 	}
 
+	/**
+	 * Returns the entry.
+	 */
 	@Override
 	public T getEntry(T entry) {
 		return findEntry(getRootNode(), entry);
 	}
 
+	/**
+	 * Finds the predecessor of a given entry
+	 * @param num	entry looking for
+	 * @param strArray	inorder array
+	 * @param count	level of recursion
+	 * @return	pred	the predecessor of the given entry. returns the entry if it the the first in the traversal
+	 */
 	private int privatePredecessor(int num, String[] strArray, int count) {
 		int pred = num;
 		if (num != Integer.parseInt(strArray[0]))
@@ -102,6 +140,13 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return pred;
 	}
 
+	/**
+	 * Finds the successor of a given entry
+	 * @param num	entry looking for
+	 * @param strArray	inorder array
+	 * @param count	level of recursion
+	 * @return	succ	the successor to the given entry. returns the entry if it is the last one int he traversal
+	 */
 	private int privateSuccessor(int num, String[] strArray, int count) {
 		int succ = num;
 		if (num == Integer.parseInt(strArray[strArray.length - 1]))
@@ -113,6 +158,9 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return succ;
 	}
 
+	/**
+	 * RemovesEntry helper method
+	 */
 	@Override
 	public T remove(T entry) {
 		T oldEntry = null;
@@ -121,6 +169,13 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return oldEntry;
 	}
 
+	/**
+	 * Removes an entry from the tree
+	 * @param rootNode	root of the tree that contains the value
+	 * @param entry	Entry to be removed
+	 * @param oldEntry	Only used if the entry already existed
+	 * @return	rootNode	null if the entry did not exist, else the entry removed.
+	 */
 	private BinaryNode<T> removeEntry(BinaryNode<T> rootNode, T entry, T oldEntry) {
 		if (rootNode != null) {
 			T rootData = rootNode.getData();
@@ -141,6 +196,11 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return rootNode;
 	}
 
+	/**
+	 * Helps the remove entry
+	 * @param rootNode Root of the tree the entry is being removed from
+	 * @return	rootNode	root of the tree
+	 */
 	private BinaryNode<T> removeFromRoot(BinaryNode<T> rootNode) {
 		if (rootNode.hasLeftChild() && rootNode.hasRightChild()) {
 			BinaryNode<T> leftSubtreeRoot = rootNode.getLeftChild();
@@ -155,6 +215,11 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return rootNode;
 	}
 
+	/**
+	 * Helps remove the entry
+	 * @param rootNode	root of the tree containing the entry
+	 * @return	rootNode	root of the tree
+	 */
 	private BinaryNode<T> removeLargest(BinaryNode<T> rootNode) {
 		if (rootNode.hasRightChild()) {
 			BinaryNode<T> rightChild = rootNode.getRightChild();
