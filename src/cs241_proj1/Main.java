@@ -39,10 +39,12 @@ public class Main {
 				try
 				{
 					num = in.nextInt();
+					in.nextLine();
 				}
 				catch (InputMismatchException e)
 				{
 					System.out.println("Command must be followed by an integer!");
+					in.nextLine();
 					select = "B";
 				}
 			}
@@ -51,7 +53,7 @@ public class Main {
 			//insert a value
 			case "I":
 				if (tree.add(num) != null)
-					System.out.println(num + "already exists. Ignored.");
+					System.out.println(num + " already exists. Ignored.");
 				else
 					System.out.println("Inorder: " + tree.inorderTraverse());
 				break;
@@ -66,13 +68,26 @@ public class Main {
 				break;
 			case "P":
 				if (tree.contains(num))
-					System.out.println(tree.findPredecessor(num));
+				{
+					int	pred = tree.findPredecessor(num);
+					if (num == pred)
+						System.out.println("First number in traversal. No predecessor!");
+					else
+						System.out.println(pred);
+				}
 				break;
 			case "S":
 				if (tree.contains(num))
-					System.out.println(tree.findSuccessor(num));
+				{
+					int succ = tree.findSuccessor(num);
+					if (num == succ)
+						System.out.println("Last number in traversal. No successor!");
+					else
+						System.out.println(succ);
+				}
 				break;
 			case "E":
+				System.exit(0);
 				break;
 			case "H":
 				System.out.println("I Insert a value");
@@ -86,6 +101,7 @@ public class Main {
 				break;
 			default:
 				System.out.println("Invalid selection! Press H for help.");
+				in.nextLine();
 				break;
 			}
 		}

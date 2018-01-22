@@ -165,8 +165,9 @@ public class BinarySearchTree <T extends Comparable<? super T>> extends BinaryTr
 
 	private int privatePredecessor(int num, String[] strArray, int count) {
 		int pred = num;
-		if (Integer.parseInt(strArray[count]) == num)
-			pred = Integer.parseInt(strArray[count - 1]);
+		if (num != Integer.parseInt(strArray[0]))
+			if (Integer.parseInt(strArray[count]) == num)
+				pred = Integer.parseInt(strArray[count - 1]);
 		else if (count < strArray.length - 1)
 			pred = privatePredecessor(num, strArray, count + 1);
 		return pred;
@@ -179,6 +180,8 @@ public class BinarySearchTree <T extends Comparable<? super T>> extends BinaryTr
 	}
 	private int privateSuccessor(int num, String[] strArray, int count) {
 		int succ = num;
+		if (num == Integer.parseInt(strArray[strArray.length - 1]))
+			return succ;
 		if (Integer.parseInt(strArray[count]) == num)
 			succ = Integer.parseInt(strArray[count + 1]);
 		else if (count < strArray.length - 1)
