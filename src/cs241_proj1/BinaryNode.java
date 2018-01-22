@@ -76,17 +76,35 @@ public class BinaryNode <T> {
 	
 	public int getNumberOfNodes()
 	{
-		
+		int leftNumber = 0;
+		int rightNumber = 0;
+		if (leftChild != null)
+			leftNumber = leftChild.getNumberOfNodes();
+		if(rightChild != null)
+			rightNumber = rightChild.getNumberOfNodes();
+		return 1 + leftNumber + rightNumber;
 	}
 	
 	public int getHeight()
 	{
-		
+		return getHeight(this);
 	}
 	
+	private int getHeight (BinaryNode<T> node)
+	{
+		int height = 0;
+		if(node !=null)
+			height = 1 + Math.max(getHeight(node.getLeftChild()), getHeight(node.getRightChild()));
+		return height;
+	}
 	public BinaryNode<T> copy()
 	{
-		
+		BinaryNode<T> newRoot = new BinaryNode<>(data);
+		if (leftChild != null)
+			newRoot.setLeftChild(leftChild.copy());
+		if (rightChild != null)
+			newRoot.setRightChild(rightChild.copy());
+		return newRoot;
 	}
 	
 	
