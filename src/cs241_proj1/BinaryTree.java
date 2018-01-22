@@ -3,8 +3,6 @@
  */
 package cs241_proj1;
 
-import java.util.Iterator;
-
 /**
  * @author bjhau
  *
@@ -101,9 +99,9 @@ public class BinaryTree <T> implements BinaryTreeInterface <T> {
 		return root;
 	}
 	
-	public void inorderTraverse()
+	public String inorderTraverse()
 	{
-		inorderTraverse(root);
+		return inorderTraverse(root);
 	}
 
 	private String inorderTraverse(BinaryNode<T> node)
@@ -111,16 +109,16 @@ public class BinaryTree <T> implements BinaryTreeInterface <T> {
 		String result = null;
 		if(node != null)
 		{
-			inorderTraverse(node.getLeftChild());
-			result += " " + node.getData();
-			inorderTraverse(node.getRightChild());
+			result += inorderTraverse(node.getLeftChild());
+			result += node.getData() + " ";
+			result += inorderTraverse(node.getRightChild());
 		}
 		return result;
 	}
 	
-	public void preorderTraverse()
+	public String preorderTraverse()
 	{
-		preorderTraverse(root);
+		return preorderTraverse(root);
 	}
 
 	private String preorderTraverse(BinaryNode<T> node)
@@ -128,26 +126,26 @@ public class BinaryTree <T> implements BinaryTreeInterface <T> {
 		String result = null;
 		if(node != null)
 		{
-			result += " " + node.getData();
-			preorderTraverse(node.getLeftChild());
-			preorderTraverse(node.getRightChild());
+			result += node.getData() + " ";
+			result += preorderTraverse(node.getLeftChild());
+			result += preorderTraverse(node.getRightChild());
 		}
 		return result;
 	}
 	
-	public void postorderTraverse()
+	public String postorderTraverse()
 	{
-		postorderTraverse(root);
+		return postorderTraverse(root);
 	}
 
 	private String postorderTraverse(BinaryNode<T> node)
 	{
-		String result = null;
+		String result = "";
 		if(node != null)
 		{
-			postorderTraverse(node.getLeftChild());
-			postorderTraverse(node.getRightChild());
-			result += " " + node.getData();
+			result += postorderTraverse(node.getLeftChild());
+			result += postorderTraverse(node.getRightChild());
+			result += node.getData() + " ";
 		}
 		return result;
 	}

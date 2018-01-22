@@ -25,9 +25,9 @@ public class BinaryNode <T> {
 	
 	public BinaryNode(T data, BinaryNode<T> leftChild, BinaryNode<T> rightChild)
 	{
-		data = this.data;
-		leftChild = this.leftChild;
-		rightChild = this.rightChild;
+		this.data = data;
+		this.leftChild = leftChild;
+		this.rightChild = rightChild;
 	}
 	
 	public T getData()
